@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>Videojuegos</h1>
-	<form action="listaVideojuegos" method="post">
+	<form action="acceder" method="post">
 		User: 	  <input type="text" name="user"><br>
 		Password: <input type="text" name="pass">
 		<input type="submit" value="Pulsame">

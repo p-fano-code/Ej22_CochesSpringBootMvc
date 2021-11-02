@@ -39,7 +39,6 @@ public class ControladorUsuario {
 		u1.setContrasenia(password);
 		
 		if(gu.validarUsuario(username, password)) {
-			u1.setUsuario(username);
 			return "redirect:/listaVideojuegos";
 		}else {
 			String error = "Usuario con nombre: " + username +

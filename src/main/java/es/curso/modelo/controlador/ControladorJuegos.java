@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import es.curso.modelo.entidad.Videojuego;
+import es.curso.modelo.negocio.GestorVidojuegos;
 import es.curso.modelo.persistencia.DaoVideojuego;
 
 @Controller
@@ -25,13 +26,13 @@ import es.curso.modelo.persistencia.DaoVideojuego;
 public class ControladorJuegos {
 
 	@Autowired
-	DaoVideojuego dv;
+	GestorVidojuegos gv;
 	
-	@PostMapping("listaVideojuegos")
-	public ModelAndView verListaJuegos(@RequestParam("user") String user,
-			 				     @RequestParam("pass") String pass){		
+	
+	@RequestMapping("listaVideojuegos")
+	public ModelAndView verListaJuegos(){		
 		ModelAndView m = new ModelAndView("listaVideojuegos"); 
-		List<Videojuego> listado = dv.findAll();
+		List<Videojuego> listado = gv.listar();
 		m.addObject("listado", listado);
 		return m;
 	}
@@ -51,8 +52,8 @@ public class ControladorJuegos {
 		vadd.setNotaMedia(nota);
 		
 		ModelAndView m = new ModelAndView("listaVideojuegos");
-		dv.save(vadd);
-		List<Videojuego> listado = dv.findAll();
+		gv.insertar(vadd);
+		List<Videojuego> listado = gv.listar();
 		m.addObject("listado", listado);
 		
 		return m;
@@ -61,11 +62,10 @@ public class ControladorJuegos {
 	
 	@PostMapping("detalle")
 	public String verDetalle(@RequestParam("id") String id, HttpServletRequest r){
-		int newId = Integer.parseInt(id);
-	
+		int newId = Integer.parseInt(id);	
 		
-		if(dv.findById(newId).isEmpty() != true)  {
-			r.setAttribute("j", dv.findById(newId).get());
+		if(gv.findById(newId) != null)  {
+			r.setAttribute("j", gv.findById(newId));
 			return "detalleJuego";
 		}else return "errorDetalle";
 	}

@@ -17,12 +17,12 @@
 			<th>YEAR</th>
 		</tr>
 		<!-- JSTL muy util para recorrer un array pasado desde el controlador -->
-		<c:forEach  var="p" items="${listado}">
+		<c:forEach items=${listado} var="li" >
 			<tr>
-				<td>${p.id}</td>
-				<td>${p.nombre}</td>
-				<td>${p.notaMedia}</td>
-				<td>${p.compania}</td>
+				<td>${li.id}</td>
+				<td>${li.nombre}</td>
+				<td>${li.notaMedia}</td>
+				<td>${li.compania}</td>
 			</tr>
 		</c:forEach>
 	</table>

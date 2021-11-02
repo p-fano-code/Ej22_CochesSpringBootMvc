@@ -1,5 +1,7 @@
 package es.curso.modelo.negocio;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,16 @@ public class GestorVidojuegos {
 	@Transactional
 	public void borrar(int id) {
 		daoJuego.deleteById(id);
+	}
+	@Transactional
+	public Videojuego findById(int id) {
+		return daoJuego.findById(id).get();
+	}
+	
+	@Transactional
+	public List<Videojuego> listar(){
+		
+		return daoJuego.findAll();
 	}
 	
 }
