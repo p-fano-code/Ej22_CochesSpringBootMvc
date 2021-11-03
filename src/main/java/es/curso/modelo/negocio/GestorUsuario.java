@@ -20,6 +20,9 @@ public class GestorUsuario {
 	@Transactional
 	public boolean validarUsuario(String user, String pass) {
 		Optional<Usuario> usuario = daoUsuario.findByUsuario(user);
-		return usuario.isPresent() ? true : false;
+		if (usuario.isPresent() && usuario.get().getContrasenia().equals(pass)) {
+			return true;
+		}else return false;
+	
 	}
 }

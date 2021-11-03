@@ -30,14 +30,12 @@ public class GestorVidojuegos {
 	public void borrar(int id) {
 		daoJuego.deleteById(id);
 	}
-	@Transactional
+	
 	public Videojuego findById(int id) {
 		return daoJuego.findById(id).get();
 	}
 	
-	@Transactional
 	public List<Videojuego> listar(){
-		
 		return daoJuego.findAll();
 	}
 	

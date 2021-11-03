@@ -9,11 +9,12 @@ import javax.persistence.Table;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 @Component
-@Scope("prototype")
 @Entity
 @Table(name ="usuarios")
+@SessionScope
 public class Usuario {
 
 	@Id

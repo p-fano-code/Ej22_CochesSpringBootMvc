@@ -27,19 +27,19 @@ public class ControladorUsuario {
 	
 	@Autowired
 	GestorUsuario gu;
+	@Autowired
+	Usuario usuario;
 	
-	Usuario u1 = new Usuario();
 	
 	@PostMapping("acceder")
 	public String doSingup(@RequestParam("user") String username,
 							@RequestParam("pass") String password,
 							Model model) {
 		
-		u1.setUsuario(username);
-		u1.setContrasenia(password);
-		
+		usuario.setUsuario(username);		
 		if(gu.validarUsuario(username, password)) {
-			return "redirect:/listaVideojuegos";
+			
+		return "redirect:/listaVideojuegos";
 		}else {
 			String error = "Usuario con nombre: " + username +
 					" y password " + password + " no existe";
